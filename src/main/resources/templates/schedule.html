@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+</head>
+<body>
+
+<h1>Tasks</h1>
+
+<ul th:each="scheduledTask : ${scheduledTasks}">
+    <li th:text="${scheduledTask.toString()}"></li>
+</ul>
+
+<form method="post" th:action="@{/schedule}" th:object="${newScheduledTask}">
+    <select th:field="*{task.id}">
+        <option th:each="task : ${tasks}"
+                th:value="${task.getId()}"
+                th:text="${task.getName()}"></option>
+    </select>
+    <button type="submit">Add Scheduled Task</button>
+</form>
+
+</body>
+</html>

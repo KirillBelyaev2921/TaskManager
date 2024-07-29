@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+
+<h1>Tasks</h1>
+
+<ul th:each="task : ${tasks}">
+    <li th:text="${task.toString()}"></li>
+</ul>
+
+<form method="post" th:action="@{/tasks}" th:object="${newTask}">
+    <input type="text" th:field="*{name}">
+    <button type="submit">Add Task</button>
+</form>
+
+</body>
+</html>
