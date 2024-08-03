@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Goals</title>
+</head>
+<body>
+<form method="get" th:action="@{/goal}">
+    <input type="date" name="date" onchange="this.form.submit()" th:value="${selectedDate}">
+</form>
+
+<form method="post" th:action="@{/goal}" th:object="${newGoal}">
+    <select th:field="*{task.id}">
+        <option th:each="task : ${tasks}"
+                th:value="${task.getId()}"
+                th:text="${task.getName()}"></option>
+    </select>
+    <label>Hours</label>
+    <input type="number" value="0" th:field="*{hours}">
+    <label>Minutes</label>
+    <input type="number" value="0" th:field="*{minutes}">
+    <button type="submit">Add goal</button>
+</form>
+
+<ul th:each="goal : ${goals}">
+    <li th:text="${goal.toString()}"></li>
+</ul>
+
+</body>
+</html>
